@@ -1,3 +1,3 @@
 # CloudVendorDetailsDemoProject
 
-RestApi Demo 
+RestApi Demo project
