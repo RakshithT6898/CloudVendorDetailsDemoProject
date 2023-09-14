@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.exception.CloudVendorNotFoundException;
 import com.example.demo.model.CloudVendor;
 import com.example.demo.repository.CloudVendorRepo;
 import com.example.demo.service.CloudVendorService;
@@ -35,7 +36,11 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 
     @Override
     public CloudVendor getVendorDetails(String VendorId) {
-        return  cloudVendorRepo.findById(VendorId).get();
+        if(cloudVendorRepo.findById(VendorId).isEmpty()){
+            throw new CloudVendorNotFoundException("Requested Cloud Vendor details not found");
+        }else {
+            return cloudVendorRepo.findById(VendorId).get();
+        }
     }
 
     @Override
